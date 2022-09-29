@@ -1,11 +1,13 @@
 # BÀI TOÁN TÍNH GIÁ VÉ TÀU
+
 ## Sinh viên thực hiện
 - Họ và tên: Quách Ngọc Minh 
 - Mã sinh viên: 20020261
+- Github repository: [https://github.com/Mint18032/trainFareCalculating](https://github.com/Mint18032/trainFareCalculating)
 
 ## Mục lục
 - [Nội dung bài toán](#Nội-dung-bài-toán)
-- [Quá trình sinh các bộ test](#Quá-trình-sinh-các-bộ-test)
+- [Quá trình sinh testcase](#Quá-trình-sinh-testcase)
 - [Kết quả kiểm thử](#Kết-quả-kiểm-thử)
 
 ## Nội dung bài toán
@@ -17,8 +19,8 @@ Cho rằng tàu chỉ khởi hành vào các giờ đúng
 và giá trị tuổi khách hàng trong khoảng từ 0 đến 200.
 Phương thức `int trainFareCalculate()` tính giá vé tàu khi cho biết giờ khởi hành và tuổi khách hàng, trả về -1 với đầu vào không hợp lệ.
 
-## Quá trình sinh các bộ test
-Vì kiểm thử phân tích giá trị biên mạnh có quá nhiều trường hợp, 
+## Quá trình sinh testcase
+Vì kiểm thử phân tích giá trị biên mạnh có nhiều trường hợp trùng nhau, 
 kiểm thử phân tích giá trị biên đơn giản nhất không bao quát hết được các trường hợp có thể của đầu ra
 còn kiểu thử phân hoạch tương đương có thể bỏ qua lỗi sai nào đó ở biên nên ta 
 sẽ sinh 2 bộ test cho 2 kỹ thuật kiểm thử biên đơn giản nhất và kiểm thử phân hoạch tương đương.
@@ -115,8 +117,171 @@ Kết hợp các giá trị trên, ta có:
 
 ## Kết quả kiểm thử
 ### Mã nguồn bộ test sử dụng TestNG
-* Bộ test kiểm thử theo phân hoạch tương đương: [EPTest.java](./src/main/java/EPTest.java)
-* Bộ test kiểm thử phân tích giá trị biên: [BVATest.java](src/main/java/BVATest.java)
+* Kiểm thử theo phân hoạch tương đương: [EPTest.java](./src/main/java/EPTest.java)
+
+```java
+public class EPTest {
+
+    @Test
+    public void test1() {
+        int h = 24;
+        int age = 5;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, -1);
+    }
+
+    @Test
+    public void test2() {
+        int h = 5;
+        int age = 201;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, -1);
+    }
+
+    @Test
+    public void test3() {
+        int h = 12;
+        int age = 3;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 0);
+    }
+
+    @Test
+    public void test4() {
+        int h = 8;
+        int age = 8;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 45000);
+    }
+
+    @Test
+    public void test5() {
+        int h = 16;
+        int age = 8;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 30000);
+    }
+
+    @Test
+    public void test6() {
+        int h = 8;
+        int age = 36;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 60000);
+    }
+
+    @Test
+    public void test7() {
+        int h = 16;
+        int age = 36;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 40000);
+    }
+
+    @Test
+    public void test8() {
+        int h = 8;
+        int age = 67;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 51000);
+    }
+
+    @Test
+    public void test9() {
+        int h = 16;
+        int age = 67;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 34000);
+    }
+}
+```
+
+* Kiểm thử phân tích giá trị biên: [BVATest.java](src/main/java/BVATest.java)
+
+```java
+public class BVATest {
+
+    @Test
+    public void test1() {
+        int h = 0;
+        int age = 100;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 51000);
+    }
+
+    @Test
+    public void test2() {
+        int h = 9;
+        int age = 100;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 34000);
+    }
+
+    @Test
+    public void test3() {
+        int h = 17;
+        int age = 100;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 51000);
+    }
+
+    @Test
+    public void test4() {
+        int h = 19;
+        int age = 100;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 34000);
+    }
+
+    @Test
+    public void test5() {
+        int h = 24;
+        int age = 100;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, -1);
+    }
+
+    @Test
+    public void test6() {
+        int h = 12;
+        int age = 0;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 0);
+    }
+
+    @Test
+    public void test7() {
+        int h = 12;
+        int age = 6;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 30000);
+    }
+
+    @Test
+    public void test8() {
+        int h = 12;
+        int age = 10;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 30000);
+    }
+
+    @Test
+    public void test9() {
+        int h = 12;
+        int age = 60;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 34000);
+    }
+
+    @Test
+    public void test10() {
+        int h = 12;
+        int age = 200;
+        int price = trainFareCalculating.trainFareCalculate(h, age);
+        Assert.assertEquals(price, 34000);
+    }
+}
+```
 
 ### Đoạn mã được kiểm thử
 ```java
@@ -200,3 +365,4 @@ public class trainFareCalculating {
 
 ![](./src/main/resources/BVAResult.png)
 
+Như vậy, 2 bộ test không phát hiện ra lỗi của chương trình.
