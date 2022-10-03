@@ -3,12 +3,18 @@
 ## Sinh viên thực hiện
 - Họ và tên: Quách Ngọc Minh 
 - Mã sinh viên: 20020261
-- Github repository: [https://github.com/Mint18032/trainFareCalculating](https://github.com/Mint18032/trainFareCalculating)
+- Github repository: <https://github.com/Mint18032/trainFareCalculating>
 
 ## Mục lục
 - [Nội dung bài toán](#Nội-dung-bài-toán)
 - [Quá trình sinh testcase](#Quá-trình-sinh-testcase)
-- [Kết quả kiểm thử](#Kết-quả-kiểm-thử)
+    - [Đặc tả](#Đặc-tả)
+    - [Bộ test thứ 1: Kiểm thử phân hoạch tương đương theo giá trị đầu ra](#Bộ-test-thứ-1:-Kiểm-thử-phân-hoạch-tương-đương-theo-giá-trị-đầu-ra)
+    - [Bộ test thứ 2: Kiểm thử phân tích giá trị biên đơn giản nhất](#Bộ-test-thứ-2:-Kiểm-thử-phân-tích-giá-trị-biên-đơn-giản-nhất)
+- [Kiểm thử](#Kiểm-thử)
+  - [Mã nguồn bộ test sử dụng TestNG](#Mã-nguồn-bộ-test-sử-dụng-TestNG)
+  - [Đoạn mã được kiểm thử](#Đoạn-mã-được-kiểm-thử)
+  - [Kết quả](#Kết-quả)
 
 ## Nội dung bài toán
 Giả sử các chuyến tàu khởi hành từ 0h đến trước 9h và từ 17h đến trước 19h (giờ cao điểm) 
@@ -25,13 +31,13 @@ kiểm thử phân tích giá trị biên đơn giản nhất không bao quát h
 còn kiểu thử phân hoạch tương đương có thể bỏ qua lỗi sai nào đó ở biên nên ta 
 sẽ sinh 2 bộ test cho 2 kỹ thuật kiểm thử biên đơn giản nhất và kiểm thử phân hoạch tương đương.
 
+### Đặc tả
 Gọi h là giờ tàu khởi hành, age là độ tuổi khách hàng.
 Ta có:
 * h, age &#8712; N (kiểu Int)
 * h &#8712; [0, 24)
 * age &#8712; \[0, 200]
 
-### Bộ test thứ 1: Kiểm thử phân hoạch tương đương theo giá trị đầu ra
 Ta có bảng giá trị đầu ra dựa theo đầu vào như sau:
 
 |STT| Điều kiện đầu vào  | Đầu ra  |
@@ -46,7 +52,9 @@ Ta có bảng giá trị đầu ra dựa theo đầu vào như sau:
 | 8|h &#8712; \[0, 9) &#8746; \[17, 19), age &#8712; \[60, 200]|51000|
 | 9|h &#8712; \[9, 17) &#8746; \[19, 24), age &#8712; \[60, 200]|34000|
 
-Như vậy, ta phân tập giá trị H, AGE thành các tập tương đương mà các thành phần
+### Bộ test thứ 1: Kiểm thử phân hoạch tương đương theo giá trị đầu ra
+
+Dựa theo đặc tả, ta phân tập giá trị H, AGE thành các tập tương đương mà các thành phần
 trong mỗi tập dẫn đến cùng một kết quả đầu ra như sau:
 * H1 = (MinInt, 0) &#8746; [24, MaxInt)
 * AGE1 = \[MinInt, MaxInt]
@@ -115,9 +123,9 @@ Kết hợp các giá trị trên, ta có:
 | 9| 12| 60 |34000|
 | 10| 12| 200|34000|
 
-## Kết quả kiểm thử
+## Kiểm thử
 ### Mã nguồn bộ test sử dụng TestNG
-* Kiểm thử theo phân hoạch tương đương: [EPTest.java](./src/main/java/EPTest.java)
+1. Kiểm thử theo phân hoạch tương đương: [EPTest.java](./src/main/java/EPTest.java)
 
 ```java
 public class EPTest {
@@ -196,7 +204,7 @@ public class EPTest {
 }
 ```
 
-* Kiểm thử phân tích giá trị biên: [BVATest.java](src/main/java/BVATest.java)
+2. Kiểm thử phân tích giá trị biên: [BVATest.java](./src/main/java/BVATest.java)
 
 ```java
 public class BVATest {
@@ -284,6 +292,8 @@ public class BVATest {
 ```
 
 ### Đoạn mã được kiểm thử
+[trainFareCalculating.java](./src/main/java/trainFareCalculating.java)
+
 ```java
 public class trainFareCalculating {
 
